@@ -1,14 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 export const useTimer = (initialTime: number, onFinish: () => void) => {
   const [time, setTime] = useState(initialTime);
+  const onFinishRef = useRef(onFinish);
+
+  useEffect(() => {
+    onFinishRef.current = onFinish;
+  }, [onFinish]);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setTime((prev) => {
         if (prev <= 1) {
           clearInterval(interval);
-          onFinish?.();
           return 0;
         }
         return prev - 1;
@@ -17,6 +21,12 @@ export const useTimer = (initialTime: number, onFinish: () => void) => {
 
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    if (time === 0) {
+      onFinishRef.current?.();
+    }
+  }, [time]);
 
   return time;
 };
