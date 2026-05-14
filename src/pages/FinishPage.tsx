@@ -11,12 +11,20 @@ export const FinishPage = () => {
         >
           {userWin ? "You did it!" : "oops you didn't find them all"}
         </p>
-        <button
-          className="w-2xs h-8 bg-blue-900 text-yellow-500 rounded-md hover:animate-bounce"
-          onClick={() => setPagination("game")}
-        >
-          Play again
-        </button>
+        <div className="flex justify-center items-center w-full">
+          <button
+            className="w-2xs h-8 bg-blue-900 text-yellow-500 rounded-md hover:animate-bounce mx-4"
+            onClick={() => setPagination("start")}
+          >
+            Change difficulty
+          </button>
+          <button
+            className="w-2xs h-8 bg-yellow-500 text-blue-900 rounded-md hover:animate-bounce mx-4"
+            onClick={() => setPagination("game")}
+          >
+            Play again
+          </button>
+        </div>
       </div>
     </Layout>
   );
