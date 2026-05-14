@@ -19,6 +19,7 @@ export const FinishPage = () => {
   }
 
   useEffect(() => {
+    if (!userWin) return;
     validateTime();
   }, []);
 
@@ -31,7 +32,7 @@ export const FinishPage = () => {
           className={"w-1/4 md:w-1/12 h-auto object-contain"}
         />
         <p
-          className={` text-2xl md:text-4xl ${userWin ? "text-green-700" : "text-red-700"} my-4 md:my-16 text-center`}
+          className={` text-2xl md:text-4xl ${userWin ? "text-green-700 animate-bounce" : "text-red-700"} my-4 md:my-16 text-center`}
         >
           {userWin ? "You did it!" : "oops you didn't find them all"}
         </p>
