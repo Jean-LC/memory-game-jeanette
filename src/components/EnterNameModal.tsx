@@ -28,11 +28,11 @@ export const EnterNameModal = ({ isOpen, close }: Props) => {
 
   return (
     <div className="fixed inset-0 bg-blue-950/60 flex items-center justify-center z-50 w-screen h-screen">
-      <div className="w-1/2 h-1/2 relative bg-indigo-900 rounded-2xl p-6 shadow-lg z-10 text-yellow-500 flex flex-col justify-center items-center">
-        <p className="text-4xl font-bold">Congratulations!</p>
-        <p className="text-2xl">You are among the best</p>
+      <div className="w-3/4 h-3/4 md:w-1/2 md:h-1/2 relative bg-indigo-900 rounded-2xl p-6 shadow-lg z-10 text-yellow-500 flex flex-col justify-center items-center">
+        <p className="text-2xl md:text-4xl font-bold">Congratulations!</p>
+        <p className="text-md md:text-2xl">You are among the best</p>
         <div className="flex flex-col justify-start mt-20">
-          <label htmlFor="name" className="text-sm text-indigo-300">
+          <label htmlFor="name" className=" text-xs md:text-sm text-indigo-300">
             Enter your name
           </label>
           <div className="relative">
@@ -50,7 +50,7 @@ export const EnterNameModal = ({ isOpen, close }: Props) => {
           </div>
         </div>
         <button
-          className="w-1/8 h-8 bg-yellow-500 text-indigo-900 rounded-md mt-8 cursor-pointer disabled:bg-yellow-500/50 disabled:cursor-not-allowed"
+          className="w-1/2 md:w-1/8 h-8 bg-yellow-500 text-indigo-900 rounded-md mt-8 cursor-pointer disabled:bg-yellow-500/50 disabled:cursor-not-allowed"
           onClick={handleContinue}
           disabled={name.length === 0}
         >
