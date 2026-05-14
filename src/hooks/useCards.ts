@@ -27,14 +27,14 @@ const imagesList = [
 ];
 
 export const useCards = () => {
-  const { setPagination, setUserWin } = useCardsStore();
+  const { setPagination, setUserWin, time } = useCardsStore();
   const [cards, setCards] = useState<IShuffledCards[]>([]);
   const [flipped, setFlipped] = useState<IShuffledCards[]>([]);
   const [matched, setMatched] = useState<IShuffledCards[]>([]);
   const [openError, setOpenError] = useState(false);
   const [openSuccess, setOpenSucess] = useState(false);
 
-  const time = useTimer(30, () => {
+  const currentTime = useTimer(time, () => {
     setUserWin(false);
     setPagination("finish");
   });
@@ -101,6 +101,6 @@ export const useCards = () => {
     flipCard,
     openError,
     openSuccess,
-    time,
+    currentTime,
   };
 };

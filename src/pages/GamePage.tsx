@@ -9,23 +9,23 @@ import { FlipCard } from "../components/FlipCard";
 
 export const GamePage = () => {
   const { audioRef, play } = useAudio();
-  const { cards, isCardShown, flipCard, openError, openSuccess, time } =
+  const { cards, isCardShown, flipCard, openError, openSuccess, currentTime } =
     useCards();
 
   useEffect(() => {
-    if (time === 10) play();
-  }, [time]);
+    if (currentTime === 10) play();
+  }, [currentTime]);
 
   return (
     <Layout>
       <div className="flex flex-col justify-center items-center w-full h-full ">
         <div
-          className={`flex justify-center items-center my-2 md:my-16 ${time < 11 ? "text-red-500 font-medium" : "text-blue-900"} text-xl`}
+          className={`flex justify-center items-center my-2 md:my-16 ${currentTime < 11 ? "text-red-500 font-medium" : "text-blue-900"} text-xl`}
         >
           <audio ref={audioRef} loop>
             <source src={tickingAudio} type="audio/mpeg" />
           </audio>
-          <p>{time}</p>
+          <p>{currentTime}</p>
           <p className="mx-4">seconds left</p>
         </div>
         <div className="grid grid-cols-2 gap-2 md:grid-cols-4">
