@@ -90,7 +90,7 @@ export const useCards = () => {
 
   useEffect(() => {
     if (flipped.length < 2) return;
-    checkPairFlipped();
+    setTimeout(checkPairFlipped, 500);
   }, [flipped]);
 
   return {
@@ -101,6 +101,6 @@ export const useCards = () => {
     flipCard,
     openError,
     openSuccess,
-    time
+    time,
   };
 };
