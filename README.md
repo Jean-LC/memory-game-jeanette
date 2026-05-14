@@ -1,73 +1,53 @@
-# React + TypeScript + Vite
+# Memory Game
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A space-themed card memory game built with React, TypeScript, and Tailwind CSS as a coding challenge for Gorilla Nation.
 
-Currently, two official plugins are available:
+## Getting Started
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```bash
 
-## React Compiler
+git clone https://github.com/Jean-LC/memory-game-jeanette.git
+cd memory-game-jeanette
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+npm install
 
-## Expanding the ESLint configuration
+npm run dev
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Then open [http://localhost:5173](http://localhost:5173) in your browser.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Technical Decisions
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### Frameworks and Tools
+
+**React 19 + TypeScript + Vite** — React was the natural choice for an interactive game: its component model maps cleanly to cards, modals, and pages. TypeScript adds safety for shared states. Vite was chosen over CRA or webpack for its near-instant HMR and lean config.
+
+**Tailwind CSS v4** — Utility-first styling keeps component files self-contained without a separate CSS layer.
+
+**Zustand** was chosen for its minimal API and first-class TypeScript support. The store (`cardsStore.ts`) handles all cross-page state: current page (`pagination`), game outcome (`userWin`, `userTime`), selected difficulty (`time`), and the persisted leaderboard (`bestTimes`).
+
+## Bonus Features
+
+### Difficulty Selection
+
+The Start screen lets players choose between three difficulty levels before starting a game:
+
+| Difficulty | Time Limit |
+| ---------- | ---------- |
+| Easy       | 60 seconds |
+| Medium     | 30 seconds |
+| Hard       | 15 seconds |
+
+The selected time is stored in Zustand and consumed by `useTimer`, so it doesn't affect the game countdown. The active difficulty is visually highlighted, and the selection persists if the player returns to the Start screen from the Finish page.
+
+### Best Times Leaderboard
+
+A persistent top-3 leaderboard is saved to `localStorage` via Zustand's `persist` middleware. Here's how it works:
+
+1. **On win**, the player's elapsed time (`initialTime − timeRemaining`) is compared against existing records.
+2. If the new score ranks in the top 3 (and isn't a duplicate), an **Enter Name modal** appears prompting the player for their name (letters and accented characters only, max 10 characters).
+3. The leaderboard is re-sorted by ascending time and trimmed to 3 entries before being saved.
+4. The leaderboard is displayed on the Finish screen with a unique space illustration for each entry.
+
+Scores survive page refreshes and browser restarts (only the leaderboard, not game state, is persisted)
