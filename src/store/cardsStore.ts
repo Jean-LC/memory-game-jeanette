@@ -5,12 +5,14 @@ interface IData {
   pagination: "start" | "game" | "finish";
   userWin: boolean;
   userTime: number;
+  time: number;
 }
 
 interface IActions {
   setPagination: (pagination: "start" | "game" | "finish") => void;
   setUserWin: (userWin: boolean) => void;
   setUserTime: (userTime: number) => void;
+  setTime: (time: number) => void;
 }
 
 export const useCardsStore = create<IData & IActions>()(
@@ -25,6 +27,9 @@ export const useCardsStore = create<IData & IActions>()(
 
       userTime: 0,
       setUserTime: (userTime) => set({ userTime }),
+
+      time: 30,
+      setTime: (time) => set({ time }),
     }),
     {
       name: "cards-storage",
