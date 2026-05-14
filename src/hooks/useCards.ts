@@ -1,33 +1,11 @@
 import { useEffect, useState } from "react";
-import comet from "../assets/images/comet.svg";
-import moon from "../assets/images/moon.svg";
-import star from "../assets/images/star.svg";
-import sun from "../assets/images/sun.svg";
 import type { IShuffledCards } from "../interfaces/cardsInterface";
 import { useCardsStore } from "../store/cardsStore";
 import { useTimer } from "./useTimer";
-
-const imagesList = [
-  {
-    id: 1,
-    src: comet,
-  },
-  {
-    id: 2,
-    src: moon,
-  },
-  {
-    id: 3,
-    src: star,
-  },
-  {
-    id: 4,
-    src: sun,
-  },
-];
+import { imagesList } from "../utils/imagesList";
 
 export const useCards = () => {
-  const { setPagination, setUserWin, time } = useCardsStore();
+  const { setPagination, setUserWin, time, setUserTime } = useCardsStore();
   const [cards, setCards] = useState<IShuffledCards[]>([]);
   const [flipped, setFlipped] = useState<IShuffledCards[]>([]);
   const [matched, setMatched] = useState<IShuffledCards[]>([]);
@@ -57,7 +35,8 @@ export const useCards = () => {
 
   function flipCard(uniqueId: number) {
     const selectedCard = cards.find((card) => card.uniqueId === uniqueId);
-    if (flipped.length === 2 || !selectedCard) return;
+    const isCardSelected = flipped.find((card) => card.uniqueId === uniqueId)
+    if (flipped.length === 2 || isCardSelected || !selectedCard) return;
     setFlipped([...flipped, selectedCard]);
   }
 
@@ -73,6 +52,7 @@ export const useCards = () => {
     setTimeout(() => {
       clearFlipped();
       if (newMatched.length === 8) {
+        setUserTime(time - currentTime);
         setUserWin(true);
         setPagination("finish");
       }
