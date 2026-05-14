@@ -4,10 +4,18 @@ import { FrontCard } from "../components/FrontCard";
 import { useCards } from "../hooks/useCards";
 import { SuccessModal } from "../components/SuccessModal";
 import { ErrorModal } from "../components/ErrorModal";
+import { useAudio } from "../hooks/useAudio";
+import tickingAudio from "../assets/audio/ticking.mp3";
+import { useEffect } from "react";
 
 export const GamePage = () => {
+  const { audioRef, play } = useAudio();
   const { cards, isCardShown, flipCard, openError, openSuccess, time } =
     useCards();
+
+  useEffect(() => {
+    if (time === 10) play();
+  }, [time]);
 
   return (
     <Layout>
@@ -15,6 +23,9 @@ export const GamePage = () => {
         <div
           className={`flex justify-center items-center my-16 ${time < 11 ? "text-red-500 font-medium" : "text-blue-900"} text-xl`}
         >
+          <audio ref={audioRef} loop>
+            <source src={tickingAudio} type="audio/mpeg" />
+          </audio>
           <p>{time}</p>
           <p className="mx-4">seconds left</p>
         </div>
