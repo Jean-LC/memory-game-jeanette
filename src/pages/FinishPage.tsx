@@ -12,7 +12,7 @@ export const FinishPage = () => {
           {userWin ? "You did it!" : "oops you didn't find them all"}
         </p>
         <button
-          className="w-sm h-8 bg-yellow-500 text-white rounded-md "
+          className="w-sm h-8 bg-yellow-500 text-white rounded-md hover:animate-bounce"
           onClick={() => setPagination("game")}
         >
           Play again
