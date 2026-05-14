@@ -1,11 +1,9 @@
 import { Layout } from "../components/Layout";
 import logo from "../assets/images/logo.svg";
+import { useCardsStore } from "../store/cardsStore";
 
-interface Props {
-  changePagination: (newPage: "start" | "game" | "finish") => void;
-}
-
-export const StartPage = ({ changePagination }: Props) => {
+export const StartPage = () => {
+  const { setPagination } = useCardsStore();
   return (
     <Layout>
       <div className="flex flex-col justify-center items-center w-full h-full ">
@@ -19,7 +17,7 @@ export const StartPage = ({ changePagination }: Props) => {
         </p>
         <button
           className="w-16 h-8 bg-violet-400 text-white rounded-md "
-          onClick={() => changePagination("game")}
+          onClick={() => setPagination("game")}
         >
           Start
         </button>

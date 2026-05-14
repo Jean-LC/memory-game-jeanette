@@ -1,22 +1,20 @@
-import { useState } from "react";
 import { FinishPage } from "./pages/FinishPage";
 import { GamePage } from "./pages/GamePage";
 import { StartPage } from "./pages/StartPage";
+import { useCardsStore } from "./store/cardsStore";
 
 function App() {
-  const [pagination, setPagination] = useState<"start" | "game" | "finish">(
-    "start",
-  );
+  const { pagination } = useCardsStore();
 
   switch (pagination) {
     case "start":
-      return <StartPage changePagination={setPagination} />;
+      return <StartPage />;
     case "game":
-      return <GamePage changePagination={setPagination} />;
+      return <GamePage />;
     case "finish":
-      return <FinishPage changePagination={setPagination} />;
+      return <FinishPage />;
     default:
-      return <StartPage changePagination={setPagination} />;
+      return <StartPage />;
   }
 }
 
