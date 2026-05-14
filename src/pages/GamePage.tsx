@@ -31,6 +31,7 @@ export const GamePage = () => {
         <div className="grid grid-cols-2 gap-2 md:grid-cols-4">
           {cards.map((card) => (
             <FlipCard
+              key={card.uniqueId}
               imageUrl={card.src}
               isFlipped={isCardShown(card.uniqueId)}
               handleFlip={() => flipCard(card.uniqueId)}
