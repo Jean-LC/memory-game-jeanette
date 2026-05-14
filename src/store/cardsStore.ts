@@ -16,7 +16,7 @@ interface IActions {
 export const useCardsStore = create<IData & IActions>()(
   persist(
     (set) => ({
-      pagination: "finish",
+      pagination: "start",
       setPagination: (pagination: "start" | "game" | "finish") =>
         set({ pagination }),
 

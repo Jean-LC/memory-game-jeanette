@@ -30,7 +30,7 @@ export const StartPage = () => {
           Welcome to the memory game!
         </p>
         <button
-          className={`w-2xs h-8 bg-yellow-500 text-white rounded-md transition-all duration-700 ease-out ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"} hover:animate-bounce`}
+          className={`w-2xs h-8 bg-blue-900 text-yellow-500  rounded-md transition-all duration-700 ease-out ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"} hover:animate-bounce`}
           onClick={() => setPagination("game")}
         >
           Start

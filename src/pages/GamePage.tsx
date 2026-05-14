@@ -21,7 +21,7 @@ export const GamePage = () => {
     <Layout>
       <div className="flex flex-col justify-center items-center w-full h-full ">
         <div
-          className={`flex justify-center items-center my-16 ${time < 11 ? "text-red-500 font-medium" : "text-blue-900"} text-xl`}
+          className={`flex justify-center items-center my-2 md:my-16 ${time < 11 ? "text-red-500 font-medium" : "text-blue-900"} text-xl`}
         >
           <audio ref={audioRef} loop>
             <source src={tickingAudio} type="audio/mpeg" />
@@ -29,7 +29,7 @@ export const GamePage = () => {
           <p>{time}</p>
           <p className="mx-4">seconds left</p>
         </div>
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 gap-2 md:grid-cols-4">
           {cards.map((card) =>
             isCardShown(card.uniqueId) ? (
               <FrontCard url={card.src} key={card.uniqueId} />

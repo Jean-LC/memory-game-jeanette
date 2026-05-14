@@ -26,11 +26,11 @@ export const Layout = ({ children }: Props) => {
 
   return (
     <div className="flex flex-col bg-orange-100 w-screen h-screen">
-      <div className="flex justify-end p-4 md:p-8">
+      <div className="flex justify-end p-2 md:p-8">
         {pagination === "game" && (
           <>
             <button
-              className="p-0 border-none bg-transparent"
+              className="border-none bg-transparent"
               onClick={playAudio}
             >
               <img
