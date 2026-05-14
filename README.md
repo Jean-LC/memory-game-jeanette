@@ -2,6 +2,9 @@
 
 A space-themed card memory game built with React, TypeScript, and Tailwind CSS as a coding challenge for Gorilla Nation.
 
+**Live demo:** [memory-game-jeanette.vercel.app](https://memory-game-jeanette.vercel.app)
+
+
 ## Getting Started
 
 
