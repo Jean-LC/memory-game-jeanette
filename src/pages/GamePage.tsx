@@ -1,12 +1,11 @@
-import { BackCard } from "../components/BackCard";
 import { Layout } from "../components/Layout";
-import { FrontCard } from "../components/FrontCard";
 import { useCards } from "../hooks/useCards";
 import { SuccessModal } from "../components/SuccessModal";
 import { ErrorModal } from "../components/ErrorModal";
 import { useAudio } from "../hooks/useAudio";
 import tickingAudio from "../assets/audio/ticking.mp3";
 import { useEffect } from "react";
+import { FlipCard } from "../components/FlipCard";
 
 export const GamePage = () => {
   const { audioRef, play } = useAudio();
@@ -30,16 +29,13 @@ export const GamePage = () => {
           <p className="mx-4">seconds left</p>
         </div>
         <div className="grid grid-cols-2 gap-2 md:grid-cols-4">
-          {cards.map((card) =>
-            isCardShown(card.uniqueId) ? (
-              <FrontCard url={card.src} key={card.uniqueId} />
-            ) : (
-              <BackCard
-                key={card.uniqueId}
-                flipCard={() => flipCard(card.uniqueId)}
-              />
-            ),
-          )}
+          {cards.map((card) => (
+            <FlipCard
+              imageUrl={card.src}
+              isFlipped={isCardShown(card.uniqueId)}
+              handleFlip={() => flipCard(card.uniqueId)}
+            />
+          ))}
         </div>
         <SuccessModal isOpen={openSuccess} />
         <ErrorModal isOpen={openError} />
