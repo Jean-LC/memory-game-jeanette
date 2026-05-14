@@ -13,6 +13,7 @@ export const useCards = () => {
   const [openSuccess, setOpenSucess] = useState(false);
 
   const currentTime = useTimer(time, () => {
+    setUserTime(0)
     setUserWin(false);
     setPagination("finish");
   });
