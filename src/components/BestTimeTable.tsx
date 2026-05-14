@@ -13,14 +13,14 @@ export const BestTimeTable = () => {
         bestTimes.map((bestTime, i) => (
           <div
             className="w-2/3 md:w-1/3 h-1/4 bg-indigo-900/70 rounded-md flex justify-between my-2"
-            key={bestTime.time}
+            key={bestTime.time + i.toString() }
           >
             <div className="flex flex-col justify-center pl-6">
               <p className="text-amber-500 font-semibold">{bestTime.name}</p>
               <p className="text-amber-300 text-sm">{bestTime.time} seconds</p>
             </div>
             <img
-              src={imagesList[i + 1].src}
+              src={imagesList[i].src}
               alt="space-illustration"
               className="w-auto h-full object-contain p-2"
             />

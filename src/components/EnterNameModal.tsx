@@ -10,13 +10,14 @@ export const EnterNameModal = ({ isOpen, close }: Props) => {
   const { setBestTimes, bestTimes, userTime } = useCardsStore();
   const [name, setName] = useState("");
 
-  function handleChange(e: ChangeEvent<HTMLInputElement, HTMLInputElement>) {
+  function handleChange(e: ChangeEvent<HTMLInputElement>) {
     const value = e.target.value;
     const onlyLetters = value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, "");
     setName(onlyLetters);
   }
 
   function handleContinue() {
+    if (!userTime) return;
     const updatedTimes = [...bestTimes, { name, time: userTime }]
       .sort((a, b) => a.time - b.time)
       .slice(0, 3);
@@ -24,7 +25,7 @@ export const EnterNameModal = ({ isOpen, close }: Props) => {
     close();
   }
 
-  if (!isOpen) return <></>;
+  if (!isOpen || !userTime) return <></>;
 
   return (
     <div className="fixed inset-0 bg-blue-950/60 flex items-center justify-center z-50 w-screen h-screen">

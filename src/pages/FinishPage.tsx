@@ -10,6 +10,7 @@ export const FinishPage = () => {
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   function validateTime() {
+    if (!userTime) return;
     const existingTime = bestTimes.find((record) => record.time === userTime);
     const allTimes = [...bestTimes.map((record) => record.time), userTime]
       .sort((a, b) => a - b)

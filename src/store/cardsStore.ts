@@ -4,7 +4,7 @@ import { persist } from "zustand/middleware";
 interface IData {
   pagination: "start" | "game" | "finish";
   userWin: boolean;
-  userTime: number;
+  userTime: number | null;
   time: number;
   bestTimes: { name: string; time: number }[];
 }
@@ -12,7 +12,7 @@ interface IData {
 interface IActions {
   setPagination: (pagination: "start" | "game" | "finish") => void;
   setUserWin: (userWin: boolean) => void;
-  setUserTime: (userTime: number) => void;
+  setUserTime: (userTime: number | null) => void;
   setTime: (time: number) => void;
   setBestTimes: (bestTimes: { name: string; time: number }[]) => void;
 }

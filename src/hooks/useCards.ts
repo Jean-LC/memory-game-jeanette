@@ -13,7 +13,7 @@ export const useCards = () => {
   const [openSuccess, setOpenSucess] = useState(false);
 
   const currentTime = useTimer(time, () => {
-    setUserTime(0)
+    setUserTime(null);
     setUserWin(false);
     setPagination("finish");
   });
@@ -36,7 +36,7 @@ export const useCards = () => {
 
   function flipCard(uniqueId: number) {
     const selectedCard = cards.find((card) => card.uniqueId === uniqueId);
-    const isCardSelected = flipped.find((card) => card.uniqueId === uniqueId)
+    const isCardSelected = flipped.find((card) => card.uniqueId === uniqueId);
     if (flipped.length === 2 || isCardSelected || !selectedCard) return;
     setFlipped([...flipped, selectedCard]);
   }
