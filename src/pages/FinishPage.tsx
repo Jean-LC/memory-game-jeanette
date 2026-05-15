@@ -41,7 +41,7 @@ export const FinishPage = () => {
         <p
           className={` text-2xl md:text-4xl ${userWin ? "text-green-700 animate-bounce" : "text-red-700"} my-4 md:my-16 text-center`}
         >
-          {userWin ? "You did it!" : "oops you didn't find them all"}
+          {userWin ? "you did it" : "oops you didn't find them all"}
         </p>
         <div className="flex justify-center items-center w-full">
           <button
