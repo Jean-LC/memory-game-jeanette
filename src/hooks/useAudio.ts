@@ -5,7 +5,7 @@ export const useAudio = () => {
 
   const play = () => {
     if (audioRef.current) {
-      audioRef.current.volume = 0.3;
+      audioRef.current.volume = 0.2;
       audioRef.current.play();
     }
   };
