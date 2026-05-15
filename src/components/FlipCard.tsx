@@ -1,15 +1,22 @@
 interface Props {
   imageUrl: string;
   isFlipped: boolean;
+  isAnimating: boolean;
   handleFlip: () => void;
 }
 
-export const FlipCard = ({ imageUrl, isFlipped, handleFlip }: Props) => {
+export const FlipCard = ({
+  imageUrl,
+  isFlipped,
+  isAnimating,
+  handleFlip,
+}: Props) => {
+  const isBlocked = isFlipped || isAnimating;
   return (
     <div
-      className={`w-30 h-30 md:w-60 md:h-60 ${isFlipped ? "cursor-not-allowed" :"cursor-pointer"} mx-auto`}
+      className={`w-30 h-30 md:w-60 md:h-60 ${isBlocked ? "cursor-not-allowed" : "cursor-pointer"} mx-auto`}
       style={{ perspective: "1000px" }}
-      onClick={isFlipped ? undefined : handleFlip}
+      onClick={isBlocked ? undefined : handleFlip}
     >
       <div
         className="relative w-full h-full transition-transform duration-700"

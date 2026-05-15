@@ -9,8 +9,15 @@ import { FlipCard } from "../components/FlipCard";
 
 export const GamePage = () => {
   const { audioRef, play } = useAudio();
-  const { cards, isCardShown, flipCard, openError, openSuccess, currentTime } =
-    useCards();
+  const {
+    cards,
+    isCardShown,
+    flipCard,
+    isAnimating,
+    openError,
+    openSuccess,
+    currentTime,
+  } = useCards();
 
   useEffect(() => {
     if (currentTime === 10) play();
@@ -34,6 +41,7 @@ export const GamePage = () => {
               key={card.uniqueId}
               imageUrl={card.src}
               isFlipped={isCardShown(card.uniqueId)}
+              isAnimating={isAnimating}
               handleFlip={() => flipCard(card.uniqueId)}
             />
           ))}

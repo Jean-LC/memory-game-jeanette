@@ -83,6 +83,7 @@ export const useCards = () => {
   return {
     cards,
     flipped,
+    isAnimating,
     matched,
     isCardShown,
     flipCard,
