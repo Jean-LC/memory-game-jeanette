@@ -1,12 +1,16 @@
+import { useEffect, useState } from "react";
 import { BestTimeTable } from "../components/BestTimeTable";
 import { Layout } from "../components/Layout";
 import { useCardsStore } from "../store/cardsStore";
 import logo from "../assets/images/logo.svg";
 import { EnterNameModal } from "../components/EnterNameModal";
-import { useEffect, useState } from "react";
+import winAudio from "../assets/audio/win.mp3";
+import looseAudio from "../assets/audio/loose.mp3";
+import { useAudio } from "../hooks/useAudio";
 
 export const FinishPage = () => {
   const { setPagination, userWin, userTime, bestTimes } = useCardsStore();
+  const { audioRef, play } = useAudio();
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   function validateTime() {
@@ -20,8 +24,10 @@ export const FinishPage = () => {
   }
 
   useEffect(() => {
-    if (!userWin) return;
-    validateTime();
+    if (userWin) {
+      validateTime();
+    }
+    play();
   }, []);
 
   return (
@@ -57,6 +63,9 @@ export const FinishPage = () => {
         isOpen={isOpenModal}
         close={() => setIsOpenModal(false)}
       />
+      <audio ref={audioRef}>
+        <source src={userWin ? winAudio : looseAudio} type="audio/mpeg" />
+      </audio>
     </Layout>
   );
 };
