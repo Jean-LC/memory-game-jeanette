@@ -6,6 +6,7 @@ import { imagesList } from "../utils/imagesList";
 
 export const useCards = () => {
   const { setPagination, setUserWin, time, setUserTime } = useCardsStore();
+  const [isAnimating, setIsAnimating] = useState(false);
   const [cards, setCards] = useState<IShuffledCards[]>([]);
   const [flipped, setFlipped] = useState<IShuffledCards[]>([]);
   const [matched, setMatched] = useState<IShuffledCards[]>([]);
@@ -22,7 +23,7 @@ export const useCards = () => {
     setCards(
       [...imagesList, ...imagesList]
         .map((card) => ({ ...card, uniqueId: Math.random() }))
-        .sort((a, b) => b.uniqueId - a.uniqueId),
+        .sort(() => Math.random() - 0.5),
     );
   }
 
@@ -35,10 +36,15 @@ export const useCards = () => {
   }
 
   function flipCard(uniqueId: number) {
+    if (isAnimating) return;
     const selectedCard = cards.find((card) => card.uniqueId === uniqueId);
     const isCardSelected = flipped.find((card) => card.uniqueId === uniqueId);
     if (flipped.length === 2 || isCardSelected || !selectedCard) return;
+    setIsAnimating(true);
     setFlipped([...flipped, selectedCard]);
+    setTimeout(() => {
+      setIsAnimating(false);
+    }, 700);
   }
 
   function checkPairFlipped() {
