@@ -30,12 +30,12 @@ export const Layout = ({ children }: Props) => {
         {pagination === "game" && (
           <>
             <button
-              className="border-none bg-transparent"
+              className="border-none bg-transparent cursor-pointer"
               onClick={playAudio}
             >
               <img
                 src={isSoundOn ? soundOn : soundOff}
-                alt="button"
+                alt="music-button"
                 className="w-8 h-8 object-cover"
               />
             </button>

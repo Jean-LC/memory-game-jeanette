@@ -7,9 +7,9 @@ interface Props {
 export const FlipCard = ({ imageUrl, isFlipped, handleFlip }: Props) => {
   return (
     <div
-      className="w-30 h-30 md:w-60 md:h-60 cursor-pointer mx-auto"
+      className={`w-30 h-30 md:w-60 md:h-60 ${isFlipped ? "cursor-not-allowed" :"cursor-pointer"} mx-auto`}
       style={{ perspective: "1000px" }}
-      onClick={handleFlip}
+      onClick={isFlipped ? undefined : handleFlip}
     >
       <div
         className="relative w-full h-full transition-transform duration-700"
