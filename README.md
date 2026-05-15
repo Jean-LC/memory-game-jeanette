@@ -58,6 +58,11 @@ Page routing is handled by a simple `switch` on the `pagination` field in the st
 
 ## Bonus Features
 
+
+### Sound Effects
+
+A win or loss sound plays automatically when the game ends, giving instant audio feedback on the outcome. Audio is managed through the custom `useAudio` hook.
+
 ### Difficulty Selection
 
 The Start screen lets players choose between three difficulty levels before starting a game:
