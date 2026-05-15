@@ -45,13 +45,13 @@ export const FinishPage = () => {
         </p>
         <div className="flex justify-center items-center w-full">
           <button
-            className="w-2xs h-8 bg-blue-900 text-yellow-500 rounded-md hover:animate-bounce mx-4"
+            className="w-2xs h-8 bg-blue-900 text-yellow-500 rounded-md hover:animate-bounce mx-4 cursor-pointer"
             onClick={() => setPagination("start")}
           >
             Change difficulty
           </button>
           <button
-            className="w-2xs h-8 bg-yellow-500 text-blue-900 rounded-md hover:animate-bounce mx-4"
+            className="w-2xs h-8 bg-yellow-500 text-blue-900 rounded-md hover:animate-bounce mx-4 cursor-pointer"
             onClick={() => setPagination("game")}
           >
             Play again
